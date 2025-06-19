@@ -25,6 +25,10 @@ h3 {
     color: #7743DB;
 }
 
+a, button {
+    transition: all 0.3s ease;
+}
+
 /* Header & Navigation */
 header {
     position: relative;
@@ -41,6 +45,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 nav h1 {
@@ -64,11 +69,12 @@ nav a {
     font-size: 18px;
     text-decoration: none;
     color: #FFF2AF;
-    transition: font-weight 0.3s;
+    transition: color 0.3s, font-weight 0.3s;
 }
 
 nav a:hover {
     font-weight: bold;
+    color: #FFD700; /* Brighter yellow for hover */
 }
 
 .drawer-button {
@@ -101,6 +107,7 @@ nav a:hover {
     left: 0;
     height: 100%;
     width: 100%;
+    object-fit: cover; /* Ensure image covers the area */
     background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
 }
@@ -108,18 +115,19 @@ nav a:hover {
 .read-more-button {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 12px 24px; /* Slightly increased padding */
     background-color: #493D9E;
     color: #FFF2AF;
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
-    transition: 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .read-more-button:hover {
     background-color: #FFF2AF;
     color: #493D9E;
+    transform: translateY(-3px) scale(1.05); /* Enhanced hover effect */
 }
 
 /* Main Content */
@@ -141,16 +149,21 @@ main {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 .featured-img {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto; /* Added vertical margin */
     width: 100%;
     max-width: 550px;
-    object-fit: contain;
-    height: auto;
-    object-fit: cover;
+    height: 300px; /* Consistent height */
+    object-fit: cover; /* Ensures image covers the area, might crop */
     border-radius: 15px;
 }
 
@@ -166,12 +179,25 @@ aside {
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fakta-bintang:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .fakta {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Increased margin */
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.fakta:hover {
+    background-color: rgba(0,0,0,0.05); /* Subtle hover for each fact item */
 }
 
 .fakta img {
@@ -179,6 +205,7 @@ aside {
     height: 80px;
     margin-right: 15px;
     border-radius: 10px;
+    object-fit: cover; /* Ensures image covers the square area */
 }
 
 .fakta p {
@@ -190,41 +217,62 @@ aside {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #FFE9B1;
+    background: #FFE9B1; /* Match fakta-bintang background or keep card background */
+}
+
+.profile header { /* No specific change, ensure it's part of .card if using .card:hover */
+    text-align: center;
 }
 
 .profile img {
     margin-top: 10px;
-    max-width: 300px;
-    border-radius: 15px;
-}
-
-.profile header {
-    text-align: center;
+    max-width: 300px; /* Max width for profile image */
+    width: 150px; /* Fixed width for better consistency */
+    height: 150px; /* Fixed height */
+    object-fit: cover;
+    border-radius: 50%; /* Circular profile image */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .profile-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .profile-table th, 
 .profile-table td {
-    padding: 8px 15px;
+    padding: 12px 15px;
     text-align: left;
     vertical-align: top;
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* Lighter border */
+}
+
+.profile-table tr:last-child th,
+.profile-table tr:last-child td {
+    border-bottom: none;
 }
 
 .profile-table th {
     font-weight: bold;
-    color: #493D9E;
-    width: 40%;
+    color: #3B3486; 
+    width: 35%; /* Adjusted width */
 }
 
 .profile-table td {
-    width: 60%;
+    width: 65%;
 }
+
+.profile-table td a {
+    color: #493D9E;
+    text-decoration: none; /* Remove underline by default */
+    font-weight: 500;
+}
+.profile-table td a:hover {
+    color: #7743DB;
+    text-decoration: underline; /* Underline on hover */
+}
+
 
 /* Footer */
 footer {
@@ -250,35 +298,82 @@ footer {
     }
 
     nav ul {
-        display: none;
+        /* Default styles for desktop are flex, gap etc. */
+        /* These styles apply for mobile drawer */
+        display: flex; /* Keep flex for item alignment inside the drawer */
         flex-direction: column;
         background: #B2A5FF;
         position: absolute;
-        top: 100%;
+        top: 100%; /* Position below the nav bar */
         left: 0;
         width: 100%;
         text-align: center;
-        padding: 10px 0;
+        padding: 0; /* Initial padding for animation */
+        
+        transform: translateY(-120%); /* Start off-screen above and further up */
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), 
+                    opacity 0.35s cubic-bezier(0.23, 1, 0.32, 1), 
+                    visibility 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                    padding 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        gap: 0; /* Reset gap for column layout */
     }
 
     nav ul.active {
-        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        padding: 10px 0; /* Add padding when active */
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+    nav ul li a {
+        display: block;
+        padding: 15px 0; /* Make tap targets larger */
+        color: #3B3486; /* Darker text for better contrast on light drawer */
+    }
+    nav ul li a:hover {
+        background-color: rgba(255,255,255,0.2);
+        color: #493D9E;
     }
 }
 
 @media (max-width: 768px) {
     .featured-img {
-        width: 80%;
-        height: auto;
+        /* width: 80%; No longer needed, max-width handles it */
+        height: 250px; /* Adjust height for smaller screens */
     }
 
     nav {
         padding: 15px;
+    }
+
+    .jumbotron h1 {
+        font-size: 2.5em; /* Adjust for smaller screens */
+    }
+    .jumbotron p {
+        font-size: 1.1em;
     }
 }
 
 @media screen and (max-width: 600px) {
     .drawer-button {
         font-size: 24px;
+    }
+    .jumbotron h1 {
+        font-size: 2em;
+    }
+    .jumbotron p {
+        font-size: 1em;
+    }
+    .read-more-button {
+        padding: 10px 20px;
+    }
+    .featured-img {
+        height: 200px;
     }
 }

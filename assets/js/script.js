@@ -24,33 +24,8 @@ if (drawerButton && navMenu) {
     });
 }
 
-// Mengambil elemen dengan class "menu-toggle" yang berfungsi sebagai tombol untuk menampilkan atau menyembunyikan menu
-const menuToggle = document.querySelector(".menu-toggle");
-
-// Mengambil elemen dengan class "nav-links" yang berisi daftar menu navigasi
-const navLinks = document.querySelector(".nav-links");
-
-// Pastikan elemen ditemukan sebelum menambahkan event listener
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-        // Mengubah (toggle) kelas 'active' pada elemen menu navigasi
-        navLinks.classList.toggle("active");
-
-        // Jika menu dalam keadaan aktif (terlihat), maka atur opacity dan posisi transisi agar tampak lebih smooth
-        if (navLinks.classList.contains("active")) {
-            navLinks.style.opacity = "1";
-            navLinks.style.transform = "translateY(0)";
-        } 
-        // Jika menu tidak aktif (tersembunyi), ubah opacity dan geser posisi sedikit ke atas
-        else {
-            navLinks.style.opacity = "0";
-            navLinks.style.transform = "translateY(-10px)";
-        }
-    });
-}
-
-// Mengambil semua tombol dengan class "read-more" untuk menangani klik pada tombol "Read More"
-const readMoreButtons = document.querySelectorAll(".read-more");
+// Mengambil semua tombol dengan class "read-more-button" untuk menangani klik pada tombol "Read More"
+const readMoreButtons = document.querySelectorAll(".read-more-button"); // Corrected selector
 
 // Pastikan tombol "Read More" ada sebelum menambahkan event listener
 if (readMoreButtons.length > 0) {
